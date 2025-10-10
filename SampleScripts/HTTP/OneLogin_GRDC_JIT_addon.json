@@ -51,12 +51,12 @@
                         "%{SkipServerCertValidation}%",
                         "%{UseSsl}%"
                     ],
-                    "ResultVariable": "AccessToken"
+                    "ResultVariable": "AccessTokenResult"
                 }
             },
             {
                 "Condition": {
-                    "If": "AccessToken == null",
+                    "If": "!AccessTokenResult",
                     "Then": {
                         "Do": [
                             {
@@ -207,12 +207,12 @@
                                     "%{SkipServerCertValidation}%",
                                     "%{UseSsl}%"
                                 ],
-                                "ResultVariable": "AccessToken"
+                                "ResultVariable": "AccessTokenResult"
                             }
                         }, 
 						{
 							"Condition": {
-                                    "If": "AccessToken == null",
+                                    "If": "!AccessTokenResult",
                                     "Then": {
                                         "Do": [
                                             {
@@ -368,12 +368,12 @@
                                     "%{SkipServerCertValidation}%",
                                     "%{UseSsl}%"
                                 ],
-                                "ResultVariable": "AccessToken"
+                                "ResultVariable": "AccessTokenResult"
                             }
                         }, 
 						{
 							"Condition": {
-                                    "If": "AccessToken == null",
+                                    "If": "!AccessTokenResult",
                                     "Then": {
                                         "Do": [
                                             {
@@ -537,12 +537,12 @@
                                     "%{SkipServerCertValidation}%",
                                     "%{UseSsl}%"
                                 ],
-                                "ResultVariable": "AccessToken"
+                                "ResultVariable": "AccessTokenResult"
                             }
                         }, 
 						{
 							"Condition": {
-                                    "If": "AccessToken == null",
+                                    "If": "!AccessTokenResult",
                                     "Then": {
                                         "Do": [
                                             {
@@ -676,12 +676,12 @@
                                     "%{SkipServerCertValidation}%",
                                     "%{UseSsl}%"
                                 ],
-                                "ResultVariable": "AccessToken"
+                                "ResultVariable": "AccessTokenResult"
                             }
                         }, 
 						{
 							"Condition": {
-                                    "If": "AccessToken == null",
+                                    "If": "!AccessTokenResult",
                                     "Then": {
                                         "Do": [
                                             {
@@ -2061,7 +2061,8 @@
                                     "IgnoreServerCertAuthentication": "%SkipServerCertValidation%",
                                     "Content": {
                                     }
-                                }
+                                },
+								
                             },
                             {
                                 "ExtractJsonObject": {
@@ -2154,6 +2155,7 @@
                         "DefaultValue": true
                     }
                 }
+                
             ],
             "Do": [
                 {
@@ -2223,22 +2225,17 @@
                                     "Content": {
                                         "ContentType": "application/json",
                                         "ContentObjectName": "Content"
-                                    }
-                                }
+                                    },
+									"IsSecret": true
+								}
                             },
                             {
                                 "ExtractJsonObject": {
                                     "JsonObjectName": "SystemResponse",
-                                    "Name": "AuthResponseJson"
+                                    "Name": "AuthResponseJson",
+									"ContainsSecret": true
                                 }
                             },
-							{
-								"SetItem": {
-									"Name": "token",
-									"Value": "%{AuthResponseJson.access_token}%",
-									"IsSecret": true
-								}
-							},
                             {
                                 "Condition": {
                                     "If": "SystemResponse.StatusCode == 200",
@@ -2253,10 +2250,16 @@
 												  "Parameters": [ "%{Address}%" ]
 												}
 											  }
+											},{
+												"SetItem": {
+													"Name": "Global:AccessToken",
+													"Value": "%{AuthResponseJson.access_token}%",
+													"IsSecret": true
+												}
 											},
 											{
                                                 "Return": {
-                                                    "Value": "%{token}%"
+                                                    "Value": true
                                                 }
                                             }
                                         ]
@@ -2286,7 +2289,7 @@
                         "Catch": [
                             {
                                 "Return": {
-                                    "Value": null
+                                    "Value": false
                                 }
                             }
                         ]
