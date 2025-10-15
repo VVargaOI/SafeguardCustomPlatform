@@ -1402,7 +1402,7 @@
                 {
                     "SetItem": {
                         "Name": "Content",
-                        "Value": "{\"status\": 0}"
+                        "Value": "{\"status\": 2}"
                     }
                 },
                 {
@@ -1480,7 +1480,7 @@
 							},
 							{
 								"Condition": {
-									"If": "GetUserResponseJson.status == 0",
+									"If": "GetUserResponseJson.status == 2",
 									"Then": {
 										"Do": [
 											{
