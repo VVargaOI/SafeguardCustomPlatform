@@ -521,6 +521,14 @@
                     "Type": "Array",
                     "Required": true
                 }
+            },
+			{
+                "RoleAssignmentCheckRetries": {
+                    "Type": "integer",
+					"Description": "The number of retries for checking whether the role has already been assigned to, or removed from the user. Wait time is 1s between retries. Default value is 10",
+                    "Required": false,
+                    "DefaultValue": 10
+                }
             }
         ],
         "Do": [
@@ -563,7 +571,8 @@
                                     "%AccessToken%",
                                     "%{PrivilegeGroupMembership}%",
                                     "%{SkipServerCertValidation}%",
-                                    "%{UseSsl}%"
+                                    "%{UseSsl}%",
+									"%{RoleAssignmentCheckRetries}%"
                                 ],
                                 "ResultVariable": "AssignRolesResult"
                             }
@@ -660,6 +669,14 @@
                     "Type": "Array",
                     "Required": true
                 }
+            },
+			{
+                "RoleDeassignmentCheckRetries": {
+                    "Type": "integer",
+					"Description": "The number of retries for checking whether the role has already been assigned to, or removed from the user. Wait time is 1s between retries. Default value is 10",
+                    "Required": false,
+                    "DefaultValue": 10
+                }
             }
         ],
         "Do": [
@@ -702,7 +719,8 @@
                                     "%AccessToken%",
                                     "%{PrivilegeGroupMembership}%",
                                     "%{SkipServerCertValidation}%",
-                                    "%{UseSsl}%"
+                                    "%{UseSsl}%",
+									"%{RoleDeassignmentCheckRetries}%"
                                 ],
                                 "ResultVariable": "DeassignRolesResult"
                             }
@@ -795,7 +813,13 @@
                         "Required": false,
                         "DefaultValue": true
                     }
-                }
+                },
+				{
+					"RoleDeassignmentCheckRetries": {
+						"Type": "integer",
+						"Required": true
+					}
+				}
             ],
             "Do": [
 				{
@@ -884,7 +908,9 @@
 																		"%UserId%",
 																		"%AccessToken%",
 																		"%{SkipServerCertValidation}%",
-																		"%{UseSsl}%"
+																		"%{UseSsl}%",
+																		"%{RoleDeassignmentCheckRetries}%",
+																		"%{AccountUsername}%"
 																	],
 																	"ResultVariable": "DeleteUserFromRoleResult"
 																}
@@ -1022,7 +1048,13 @@
                         "Required": false,
                         "DefaultValue": true
                     }
-                }
+                },
+				{
+					"RoleAssignmentCheckRetries": {
+						"Type": "integer",
+						"Required": true
+					}
+				}
             ],
             "Do": [
 				{
@@ -1111,7 +1143,9 @@
 																		"%UserId%",
 																		"%AccessToken%",
 																		"%{SkipServerCertValidation}%",
-																		"%{UseSsl}%"
+																		"%{UseSsl}%",
+																		"%{RoleAssignmentCheckRetries}%",
+																		"%{AccountUsername}%"
 																	],
 																	"ResultVariable": "AddUserToRoleResult"
 																}
@@ -1553,6 +1587,18 @@
                         "Required": false,
                         "DefaultValue": true
                     }
+                },
+				{
+					"RoleDeassignmentCheckRetries": {
+						"Type": "integer",
+						"Required": true
+					}
+				},
+                {
+                    "Username": {
+                        "Type": "String",
+                        "Required": true
+                    }
                 }
             ],
             "Do": [
@@ -1628,14 +1674,47 @@
 									"Condition": {
 										"If": "SystemResponse.StatusCode == 204",
 										"Then": {
-											"Do": [
-												{
-													"Return": {
-														"Value": true
+										"Do": [
+											{
+												"Function": {
+													"Name": "IsUserInRole",
+														"Parameters": [
+															"%Address%",
+															"%RoleId%",
+															"%Username%",
+															"%AccessToken%",
+															"%{SkipServerCertValidation}%",
+															"%{UseSsl}%",
+															"%{RoleDeassignmentCheckRetries}%",
+															"Deassign"
+														],
+														"ResultVariable": "IsUserInRoleResult"
+												}
+											},{
+												"Condition": {
+													"If": "IsUserInRoleResult == false",
+													"Then": {
+														"Do": [
+															{
+																"Return": {
+																	"Value": true
+																}
+															}
+														]
+													},
+													"Else": {
+														"Do": [
+															{
+																"Return": {
+																	"Value": false
+																}
+															}
+														]
 													}
 												}
-											]
-										},
+											}
+										]
+									},
 										"Else": {
 											"Do": [
 												{
@@ -1698,6 +1777,18 @@
                         "Type": "boolean",
                         "Required": false,
                         "DefaultValue": true
+                    }
+                },
+				{
+					"RoleAssignmentCheckRetries": {
+						"Type": "integer",
+						"Required": true
+					}
+				},
+                {
+                    "Username": {
+                        "Type": "String",
+                        "Required": true
                     }
                 }
             ],
@@ -1782,8 +1873,41 @@
 									"Then": {
 										"Do": [
 											{
-												"Return": {
-													"Value": true
+												"Function": {
+													"Name": "IsUserInRole",
+														"Parameters": [
+															"%Address%",
+															"%RoleId%",
+															"%Username%",
+															"%AccessToken%",
+															"%{SkipServerCertValidation}%",
+															"%{UseSsl}%",
+															"%{RoleAssignmentCheckRetries}%",
+															"Assign"
+														],
+														"ResultVariable": "IsUserInRoleResult"
+												}
+											},{
+												"Condition": {
+													"If": "IsUserInRoleResult == true",
+													"Then": {
+														"Do": [
+															{
+																"Return": {
+																	"Value": true
+																}
+															}
+														]
+													},
+													"Else": {
+														"Do": [
+															{
+																"Return": {
+																	"Value": false
+																}
+															}
+														]
+													}
 												}
 											}
 										]
@@ -1792,7 +1916,7 @@
 										"Do": [
 											{
 												"Throw": {
-													"Value": "[Error] %{SystemResponse.StatusCode}%, Response: GetRoleAssignResponseJson"
+													"Value": "[Error] %{SystemResponse.StatusCode}%, Response: %{GetRoleAssignResponseJson}%"
 												}
 											}
 										]
@@ -1805,6 +1929,210 @@
                                 "Return": {
                                     "Value": false
                                 }
+                            }
+                        ]
+					}
+				}
+            ]
+        },
+        {
+            "Name": "IsUserInRole",
+            "Parameters": [
+                {
+                    "Address": {
+                        "Type": "String",
+                        "Required": true
+                    }
+                },
+                {
+                    "RoleId": {
+                        "Type": "String",
+                        "Required": true
+                    }
+                },
+                {
+                    "UserName": {
+                        "Type": "String",
+                        "Required": true
+                    }
+                },
+                {
+                    "AccessToken": {
+                        "Type": "Secret",
+                        "Required": true
+                    }
+                },
+                {
+                    "SkipServerCertValidation": {
+                        "Type": "boolean",
+                        "Required": false,
+                        "DefaultValue": true
+                    }
+                },
+                {
+                    "UseSsl": {
+                        "Type": "boolean",
+                        "Required": false,
+                        "DefaultValue": true
+                    }
+                },
+                {
+                    "Retries": {
+                        "Type": "integer",
+                        "Required": true
+                    }
+                },
+                {
+                    "Task": {
+                        "Type": "string",
+                        "Required": true
+                    }
+                }
+            ],
+            "Do": [
+                {
+                    "Log": {
+                        "Text": "Checking if role %RoleId% is assigned to user %UserName%"
+                    }
+                },
+                {
+                    "Condition": {
+                        "If": "UseSsl",
+                        "Then": {
+                            "Do": [
+                                {
+                                    "BaseAddress": {
+                                        "Address": "https://%Address%"
+                                    }
+                                }
+                            ]
+                        },
+                        "Else": {
+                            "Do": [
+                                {
+                                    "BaseAddress": {
+                                        "Address": "http://%Address%"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "NewHttpRequest": {
+                        "ObjectName": "SystemRequest"
+                    }
+                },
+                {
+                    "Headers": {
+                        "RequestObjectName": "SystemRequest",
+                        "AddHeaders": {
+                            "Authorization": "Bearer %AccessToken%"
+                        }
+                    }
+                },{
+					"Try": {
+						"Do": [
+							{
+								"For": {
+									"Condition": "Retries > 0",
+									"MaxIterations": "%{Retries}%",
+									"Body": {
+									  "Do": [
+											{
+												"Request": {
+													"RequestObjectName": "SystemRequest",
+													"ResponseObjectName": "SystemResponse",
+													"Verb": "GET",
+													"Url": "api/2/roles/%{RoleId}%/users?name=%{Username}%",
+													"SubstitutionInUrl": true,
+													"IgnoreServerCertAuthentication": "%SkipServerCertValidation%"
+												}
+											},{
+												"ExtractJsonObject": {
+													"JsonObjectName": "SystemResponse",
+													"Name": "ListRoleUsersResponseJson"
+												}
+											},{
+												"Log": {
+													"Text": "%{SystemResponse.StatusCode}%"
+												}
+											},{
+												"Condition": {
+													"If": "SystemResponse.StatusCode == 200",
+													"Then": {
+														"Do": [
+															{
+																"Condition": {
+																	"If": "Task == 'Assign' && ListRoleUsersResponseJson.count == 1",
+																	"Then": {
+																		"Do": [
+																			{
+																				"Return": {
+																					"Value": true
+																				}
+																			}
+																		]
+																	}
+																}
+															}, {
+																"Condition": {
+																	"If": "Task == 'Deassign' && ListRoleUsersResponseJson.count == 0",
+																	"Then": {
+																		"Do": [
+																			{
+																				"Return": {
+																					"Value": false
+																				}
+																			}
+																		]
+																	}
+																}
+															}
+														]
+													},
+													"Else": {
+														"Do": [
+															{
+																"Throw": {
+																	"Value": "[Error] %{SystemResponse.StatusCode}%, Response: %{ListRoleUsersResponseJson}%"
+																}
+															}
+														]
+													}
+												}
+											}, {
+												"Wait": { "Seconds": 1 }
+											}
+										
+										]
+									}
+								}
+							}
+						],
+                        "Catch": [
+                            {
+								"Condition": {
+									"If": "%{Task}% = \"Assign\"",
+									"Then": {
+										"Do": [
+											{
+												"Return": {
+													"Value": false
+												}
+											}
+										]
+									},
+									"Else": {
+										"Do": [
+											{
+												"Return": {
+													"Value": true
+												}
+											}
+										]
+									}
+								}
                             }
                         ]
 					}
