@@ -523,11 +523,11 @@
                 }
             },
 			{
-                "RoleAssignmentCheckRetries": {
+                "RetryIntervalSeconds": {
                     "Type": "integer",
-					"Description": "The number of retries for checking whether the role has already been assigned to, or removed from the user. Wait time is 1s between retries. Default value is 10",
+					"Description": "The number of seconds to wait between each retries when checking the completion of activating the user or assigning a role. Default value is 5. Note: there is no maximum iteration configured, if hitting a problem on the OneLogin side, the Elevate task will hang in Pending state.",
                     "Required": false,
-                    "DefaultValue": 10
+                    "DefaultValue": 5
                 }
             }
         ],
@@ -535,7 +535,13 @@
             {
                 "Try": {
                     "Do": [
-                        {
+						{
+							"SetItem": {
+								"Name": "Global:RetrySeconds",
+								"Value": "%{RetryIntervalSeconds}%"
+							}
+						},
+						{
                             "Function": {
                                 "Name": "ApiAuth",
                                 "Parameters": [
@@ -571,8 +577,7 @@
                                     "%AccessToken%",
                                     "%{PrivilegeGroupMembership}%",
                                     "%{SkipServerCertValidation}%",
-                                    "%{UseSsl}%",
-									"%{RoleAssignmentCheckRetries}%"
+                                    "%{UseSsl}%"
                                 ],
                                 "ResultVariable": "AssignRolesResult"
                             }
@@ -671,11 +676,11 @@
                 }
             },
 			{
-                "RoleDeassignmentCheckRetries": {
+                "RetryIntervalSeconds": {
                     "Type": "integer",
-					"Description": "The number of retries for checking whether the role has already been assigned to, or removed from the user. Wait time is 1s between retries. Default value is 10",
+					"Description": "The number of seconds to wait between each retries when checking the completion of deassigning a role. Default value is 5. Note: there is no maximum iteration configured, if hitting a problem on the OneLogin side, the Demote task will hang in Pending state.",
                     "Required": false,
-                    "DefaultValue": 10
+                    "DefaultValue": 5
                 }
             }
         ],
@@ -684,6 +689,12 @@
                 "Try": {
                     "Do": [
                         {
+							"SetItem": {
+								"Name": "Global:RetrySeconds",
+								"Value": "%{RetryIntervalSeconds}%"
+							}
+						},
+						{
                             "Function": {
                                 "Name": "ApiAuth",
                                 "Parameters": [
@@ -719,8 +730,7 @@
                                     "%AccessToken%",
                                     "%{PrivilegeGroupMembership}%",
                                     "%{SkipServerCertValidation}%",
-                                    "%{UseSsl}%",
-									"%{RoleDeassignmentCheckRetries}%"
+                                    "%{UseSsl}%"
                                 ],
                                 "ResultVariable": "DeassignRolesResult"
                             }
@@ -813,13 +823,7 @@
                         "Required": false,
                         "DefaultValue": true
                     }
-                },
-				{
-					"RoleDeassignmentCheckRetries": {
-						"Type": "integer",
-						"Required": true
-					}
-				}
+                }
             ],
             "Do": [
 				{
@@ -909,7 +913,6 @@
 																		"%AccessToken%",
 																		"%{SkipServerCertValidation}%",
 																		"%{UseSsl}%",
-																		"%{RoleDeassignmentCheckRetries}%",
 																		"%{AccountUsername}%"
 																	],
 																	"ResultVariable": "DeleteUserFromRoleResult"
@@ -1048,13 +1051,7 @@
                         "Required": false,
                         "DefaultValue": true
                     }
-                },
-				{
-					"RoleAssignmentCheckRetries": {
-						"Type": "integer",
-						"Required": true
-					}
-				}
+                }
             ],
             "Do": [
 				{
@@ -1090,6 +1087,36 @@
 							{
 								"Log": {
 									"Text": "User Id found for user '%{AccountUsername}%': %{UserId}%"
+								}
+							},{
+								"Function": {
+									"Name": "IsUserActive",
+									"Parameters": [
+										"%Address%",
+										"%AccountUsername%",
+										"%AccessToken%",
+										"%{SkipServerCertValidation}%",
+										"%{UseSsl}%"
+									],
+									"ResultVariable": "IsUserActiveResult"
+								}
+							},{
+								"Condition": {
+									"If": "!IsUserActiveResult",
+									"Then": {
+										"Do": [
+											{
+													"Throw": {
+														"Value": "[Error] User is inactive, roles don't get assigned to avoid subsequent provisioning errors inside OneLogin"
+													}
+												}
+										]
+									}
+								}
+							},
+							{
+								"Log": {
+									"Text": "User is active, assigning roles."
 								}
 							},{
 								"SetItem": {
@@ -1144,7 +1171,6 @@
 																		"%AccessToken%",
 																		"%{SkipServerCertValidation}%",
 																		"%{UseSsl}%",
-																		"%{RoleAssignmentCheckRetries}%",
 																		"%{AccountUsername}%"
 																	],
 																	"ResultVariable": "AddUserToRoleResult"
@@ -1588,12 +1614,6 @@
                         "DefaultValue": true
                     }
                 },
-				{
-					"RoleDeassignmentCheckRetries": {
-						"Type": "integer",
-						"Required": true
-					}
-				},
                 {
                     "Username": {
                         "Type": "String",
@@ -1685,7 +1705,6 @@
 															"%AccessToken%",
 															"%{SkipServerCertValidation}%",
 															"%{UseSsl}%",
-															"%{RoleDeassignmentCheckRetries}%",
 															"Deassign"
 														],
 														"ResultVariable": "IsUserInRoleResult"
@@ -1779,12 +1798,6 @@
                         "DefaultValue": true
                     }
                 },
-				{
-					"RoleAssignmentCheckRetries": {
-						"Type": "integer",
-						"Required": true
-					}
-				},
                 {
                     "Username": {
                         "Type": "String",
@@ -1882,7 +1895,6 @@
 															"%AccessToken%",
 															"%{SkipServerCertValidation}%",
 															"%{UseSsl}%",
-															"%{RoleAssignmentCheckRetries}%",
 															"Assign"
 														],
 														"ResultVariable": "IsUserInRoleResult"
@@ -1977,12 +1989,6 @@
                     }
                 },
                 {
-                    "Retries": {
-                        "Type": "integer",
-                        "Required": true
-                    }
-                },
-                {
                     "Task": {
                         "Type": "string",
                         "Required": true
@@ -1992,7 +1998,7 @@
             "Do": [
                 {
                     "Log": {
-                        "Text": "Checking if role %RoleId% is assigned to user %UserName%"
+                        "Text": "Checking if role with id: %RoleId% is assigned to user %UserName%"
                     }
                 },
                 {
@@ -2035,8 +2041,7 @@
 						"Do": [
 							{
 								"For": {
-									"Condition": "Retries > 0",
-									"MaxIterations": "%{Retries}%",
+									"Condition": true,
 									"Body": {
 									  "Do": [
 											{
@@ -2102,7 +2107,16 @@
 													}
 												}
 											}, {
-												"Wait": { "Seconds": 1 }
+											  "Status": {
+												"Type": "Changing",
+												"Percent": 75,
+												"Message": {
+												  "Name": "LookingUpGroup",
+												  "Parameters": [ "%{Role}%, whether the role assignment/deassignment completed" ]
+												}
+											  }
+											}, {
+												"Wait": { "Seconds": "%{RetrySeconds}%" }
 											}
 										
 										]
@@ -2113,7 +2127,7 @@
                         "Catch": [
                             {
 								"Condition": {
-									"If": "%{Task}% = \"Assign\"",
+									"If": "Task == 'Assign'",
 									"Then": {
 										"Do": [
 											{
@@ -2137,6 +2151,153 @@
                         ]
 					}
 				}
+            ]
+        },
+        {
+            "Name": "IsUserActive",
+            "Parameters": [
+                {
+                    "Address": {
+                        "Type": "String",
+                        "Required": true
+                    }
+                },
+                {
+                    "AccountUsername": {
+                        "Type": "String",
+                        "Required": true
+                    }
+                },
+                {
+                    "AccessToken": {
+                        "Type": "Secret",
+                        "Required": true
+                    }
+                },
+                {
+                    "SkipServerCertValidation": {
+                        "Type": "boolean",
+                        "Required": false,
+                        "DefaultValue": true
+                    }
+                },
+                {
+                    "UseSsl": {
+                        "Type": "boolean",
+                        "Required": false,
+                        "DefaultValue": true
+                    }
+                }
+            ],
+            "Do": [
+                {
+                    "Condition": {
+                        "If": "UseSsl",
+                        "Then": {
+                            "Do": [
+                                {
+                                    "BaseAddress": {
+                                        "Address": "https://%Address%"
+                                    }
+                                }
+                            ]
+                        },
+                        "Else": {
+                            "Do": [
+                                {
+                                    "BaseAddress": {
+                                        "Address": "http://%Address%"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "NewHttpRequest": {
+                        "ObjectName": "SystemRequest"
+                    }
+                },
+                {
+                    "Headers": {
+                        "RequestObjectName": "SystemRequest",
+                        "AddHeaders": {
+                            "Authorization": "Bearer %AccessToken%"
+                        }
+                    }
+                },
+                {
+                    "Try": {
+                        "Do": [
+                            {
+								"For": {
+									"Condition": true,
+									"Body": {
+									  "Do": [
+											{
+												"Request": {
+													"RequestObjectName": "SystemRequest",
+													"ResponseObjectName": "SystemResponse",
+													"Verb": "GET",
+													"Url": "api/2/users?username=%AccountUsername%",
+													"SubstitutionInUrl": true,
+													"IgnoreServerCertAuthentication": "%SkipServerCertValidation%",
+													"Content": {
+													}
+												},
+												
+											},
+											{
+												"ExtractJsonObject": {
+													"JsonObjectName": "SystemResponse",
+													"Name": "GetUserIdResponseJson"
+												}
+											},
+											{
+												"Log": {
+													"Text": "%{SystemResponse.StatusCode}%"
+												}
+											},
+											{
+												"Condition": {
+													"If": "GetUserIdResponseJson[0].status == 1",
+													"Then": {
+														"Do": [
+															{
+																"Return": {
+																	"Value": true
+																}
+															}
+														]
+													}
+												}
+											},{
+												"Status": {
+													"Type": "Changing",
+													"Percent": 45,
+													"Message": {
+														"Name": "LookingUpUser",
+														"Parameters": [ "%{AccountUsername}%, which must be active in OneLogin before assigning roles" ]
+													}
+												 }
+											}, {
+												"Wait": { "Seconds": "%{RetrySeconds}%" }
+											}
+										
+										]
+									}
+								}
+							}
+                        ],
+                        "Catch": [
+                            {
+                                "Return": {
+                                    "Value": null
+                                }
+                            }
+                        ]
+                    }
+                }
             ]
         },
         {
