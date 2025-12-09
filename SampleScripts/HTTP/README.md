@@ -63,47 +63,50 @@ With this, the User is now able to raise Access Requests in Safeguard which enab
 
 1. Onboard the OneLogin Accounts to SPP in the preferred way, for example using the out-of-box Starling Connect connector for OneLogin. This is going to be the main Account object holding the actual secrets of the privileged OneLogin Account. Feel free to manage these Accounts as needed.
 
-<< picture >>
+	<< picture >>
 
 2. Create the API Credential in OneLogin with Manage All permissions. This will be used as the service account for the Assets in Safeguard.
 
 3. Upload the custom platform script to SPP.
 
-<< picture >>
+	<< picture >>
 
 4. Create an Asset for each OneLogin Role, or combination of Roles, that the User has permission to elevate into. The platform type is the OneLogin_GRC_JIT_addon.
-As the Roles look like in OneLogin:
 
-<< picture >>
+	As the Roles look like in OneLogin:
+
+	<< picture >>
 
 As the corresponding Assets look like in Safeguard:
 
-<< picture >>
+	<< picture >>
 
 5. Create an Account on each of the these Assets with the same name as the original OneLogin Account. For example as shown on one of the Assets representing a OneLogin Role:
 
-<< picture >>
+	<< picture >>
 
-Make sure that a dummy password is set on each of these Accounts otherwise these won't show up when raising an Access Request (note: the OneLogin_GRC_JIT_addon does not change the password of the Account, even if the Task is successfully completed).
+	Make sure that a dummy password is set on each of these Accounts otherwise these won't show up when raising an Access Request (note: the OneLogin_GRC_JIT_addon does not change the password of the Account, even if the Task is successfully completed).
 
-The Password Profile of these Accounts should do nothing with the password. No Check / No Change.
+	The Password Profile of these Accounts should do nothing with the password. No Check / No Change.
 
 6. Configure the corresponding Role name in the JIT configuration of these Accounts. For example as shown on one of the Assets representing a OneLogin Role:
 
-<< picture >>
+	<< picture >>
 
 7. Create an Entitlement per each User. This is required as at the time of writing this readme (in SPP v8.2) the Accounts of a Custom Platfom Asset can't be configured as Linked Accounts.
 
 8. Create an Access Request Policy into the Entitlement. In the Scope of this Access Request Policy, make sure that the Account is added from each Asset representing a OneLogin Role.
 
-<< picture >>
+	<< picture >>
 
-With this, the User is now able to raise Access Requests in Safeguard which enables the Account in OneLogin and assigns the requested Roles.
+	With this, the User is now able to raise Access Requests in Safeguard which enables the Account in OneLogin and assigns the requested Roles.
 
 
 ### About enabling/disabling the OneLogin user via a Safeguard Access Request
 JIT enable/disable or elevate/demote tasks are implemented on the OneLogin_GRC_JIT_addon Asset/Accounts.
+
 There are two typical setups:
+
 1. When the Account objects are managed by OneLogin, all of them stored under a OneLogin_GRC_JIT_addon Asset:
 	* In this scenario enable the *Suspend account when checked in* function under Password Profile > Change Password policy for the main privileged account. Do not configure JIT groups for this Accounts.
 	* Configure the JIT group elevation for the Accounts on the Assets representing the Roles. Do not enable the *Suspend account when checked in* function for these Accounts.
@@ -116,4 +119,5 @@ There are two typical setups:
 
 ## Okta_WithDiscoveryAndGroupMembershipRestore
 This script had been implemented before the JIT Elevation functionality was available in Safeguard. Hence the configuration is cumbersome and does not work as JIT is confgured.
+
 The script should be reworked a bit to reflect the out-of-box JIT configuration approach.
