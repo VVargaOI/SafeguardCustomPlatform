@@ -57,6 +57,7 @@ It can be configured with two different approaches:
 
 	<< TBD URL to guide >>
 
+
 With this, the User is now able to raise Access Requests in Safeguard which enables the Account in OneLogin and assigns the requested Roles.
 
 #### Configuration: The base Account is created via the Discovery feature of the Starling Connect connector for OneLogin
@@ -99,7 +100,8 @@ With this, the User is now able to raise Access Requests in Safeguard which enab
 
 	<< picture >>
 
-	With this, the User is now able to raise Access Requests in Safeguard which enables the Account in OneLogin and assigns the requested Roles.
+
+With this, the User is now able to raise Access Requests in Safeguard which enables the Account in OneLogin and assigns the requested Roles.
 
 
 ### About enabling/disabling the OneLogin user via a Safeguard Access Request
