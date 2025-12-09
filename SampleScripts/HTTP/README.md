@@ -34,7 +34,9 @@ The Users need to have Entitlements / Access Request Policies to the base privil
 When the User is requesting access to the privileged OneLogin Account, at the same time the desired Roles should also be selected. The privileged OneLogin Account will have the Roles assigned, once the subsequent access requests representing the Roles become available (after Pending Restore state).
 
 << picture >>
- 
+
+#### Demo video
+<< video >>
 
 ### Configuration
 It can be configured with two different approaches: 
