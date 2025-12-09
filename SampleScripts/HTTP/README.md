@@ -1,5 +1,9 @@
 # SafeguardCustomPlatform - HTTP Scripts
 
+## Table of Contents  
+[OneLogin_GRC_JIT_addon](#onelogin_grc_jit_addon)  
+[Okta_WithDiscoveryAndGroupMembershipRestore](#okta_withdiscoveryandgroupmembershiprestore) 
+
 ## OneLogin_GRC_JIT_addon
 
 This Solution Accelerator addon was created to implement JIT role elevation for OneLogin until it is not available out-of-box in Safeguard.
