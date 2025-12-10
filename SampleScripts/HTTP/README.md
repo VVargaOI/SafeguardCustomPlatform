@@ -98,7 +98,11 @@ With this, the User is now able to raise Access Requests in Safeguard which enab
 
 7. Create an Entitlement per each User. This is required as at the time of writing this readme (in SPP v8.2) the Accounts of a Custom Platfom Asset can't be configured as Linked Accounts.
 
-8. Create an Access Request Policy into the Entitlement. In the Scope of this Access Request Policy, make sure that the Account is added from each Asset representing a OneLogin Role.
+8. Create a Dynamic Account Group for all the Role-specific Accounts of the User.
+
+	<< picture >>
+
+9. Create an Access Request Policy into the Entitlement. In the Scope of this Access Request Policy, add the Dynamic Account Group of the User.
 
 	<< picture >>
 
