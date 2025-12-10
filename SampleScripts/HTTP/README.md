@@ -9,7 +9,7 @@
 This Solution Accelerator addon was created to implement JIT role elevation for OneLogin until it is not available out-of-box in Safeguard.
 
 ### How does it work
-The OneLogin_GRC_JIT_addon implements Restore/Suspenct and Elevate/Demote functions. The ChangePassword function is also defined as it's a must-have for Custom Platform scripts, however it does nothing (only logs that it does nothing).
+The OneLogin_GRC_JIT_addon implements Restore/Suspend and Elevate/Demote functions. The ChangePassword function is also defined as it's a must-have for Custom Platform scripts, however it does nothing (only logs that it does nothing).
 
 Changing the password is:
  * Either not necessary as the Account will only store a TOTP code, configured automatically by OneLogin.
