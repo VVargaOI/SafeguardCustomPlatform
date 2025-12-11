@@ -9,7 +9,7 @@
 This Solution Accelerator addon was created to implement JIT role elevation for OneLogin until it is not available out-of-box in Safeguard.
 
 ### How does it work
-The OneLogin_GRC_JIT_addon implements Restore/Suspenct and Elevate/Demote functions. The ChangePassword function is also defined as it's a must-have for Custom Platform scripts, however it does nothing (only logs that it does nothing).
+The OneLogin_GRC_JIT_addon implements Restore/Suspend and Elevate/Demote functions. The ChangePassword function is also defined as it's a must-have for Custom Platform scripts, however it does nothing (only logs that it does nothing).
 
 Changing the password is:
  * Either not necessary as the Account will only store a TOTP code, configured automatically by OneLogin.
@@ -34,7 +34,9 @@ The Users need to have Entitlements / Access Request Policies to the base privil
 When the User is requesting access to the privileged OneLogin Account, at the same time the desired Roles should also be selected. The privileged OneLogin Account will have the Roles assigned, once the subsequent access requests representing the Roles become available (after Pending Restore state).
 
 << picture >>
- 
+
+#### Demo video
+<< video >>
 
 ### Configuration
 It can be configured with two different approaches: 
@@ -56,6 +58,7 @@ It can be configured with two different approaches:
  3. Configure the OneLogin REST Connector for Safeguard and let it do everything else in Safeguard: Assets, Accounts, Entitlements, Access Request Policies, etc.
 
 	<< TBD URL to guide >>
+
 
 With this, the User is now able to raise Access Requests in Safeguard which enables the Account in OneLogin and assigns the requested Roles.
 
@@ -95,11 +98,16 @@ With this, the User is now able to raise Access Requests in Safeguard which enab
 
 7. Create an Entitlement per each User. This is required as at the time of writing this readme (in SPP v8.2) the Accounts of a Custom Platfom Asset can't be configured as Linked Accounts.
 
-8. Create an Access Request Policy into the Entitlement. In the Scope of this Access Request Policy, make sure that the Account is added from each Asset representing a OneLogin Role.
+8. Create a Dynamic Account Group for all the Role-specific Accounts of the User.
 
 	<< picture >>
 
-	With this, the User is now able to raise Access Requests in Safeguard which enables the Account in OneLogin and assigns the requested Roles.
+9. Create an Access Request Policy into the Entitlement. In the Scope of this Access Request Policy, add the Dynamic Account Group of the User.
+
+	<< picture >>
+
+
+With this, the User is now able to raise Access Requests in Safeguard which enables the Account in OneLogin and assigns the requested Roles.
 
 
 ### About enabling/disabling the OneLogin user via a Safeguard Access Request
