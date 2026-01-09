@@ -53,7 +53,10 @@ It can be configured with two different approaches:
  1. Create the API Credential in OneLogin with Manage All permissions. This will be used as the service account for the Assets in Safeguard.
  2. Upload the custom platform script to SPP.
 
-	<< picture >>
+	<img width="715" height="658" alt="image" src="https://github.com/user-attachments/assets/ee715efa-95a3-468c-b188-925faf2d7997" />
+	<img width="346" height="456" alt="image" src="https://github.com/user-attachments/assets/af74b6ea-a5c0-4618-bcbc-5bcd16ae948a" />
+
+
 
  3. Configure the OneLogin REST Connector for Safeguard and let it do everything else in Safeguard: Assets, Accounts, Entitlements, Access Request Policies, etc.
 
