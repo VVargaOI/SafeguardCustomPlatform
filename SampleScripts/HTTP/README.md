@@ -108,8 +108,22 @@ With this, the User is now able to raise Access Requests in Safeguard which enab
 
 	<img width="840" height="687" alt="image" src="https://github.com/user-attachments/assets/2a970188-dab6-44e1-8be6-50d8e452580e" />
 
+7. If the base OneLogin Account is managed through the originating AD Account, then create an Entitlement for password or pession (RDP App) access with the Users' Linked Accounts.
 
-7. Create an Entitlement per each User. This is required as at the time of writing this readme (in SPP v8.2) the Accounts of a Custom Platfom Asset can't be configured as Linked Accounts.
+<img width="551" height="358" alt="image" src="https://github.com/user-attachments/assets/3b7e6ccf-baf6-461f-8316-1d267ac298e3" />
+
+<img width="779" height="396" alt="image" src="https://github.com/user-attachments/assets/61cab595-1ba5-4774-874a-c7ea4ca176af" />
+
+<img width="788" height="676" alt="image" src="https://github.com/user-attachments/assets/ee2e9be2-dfce-4001-8eb4-52b68b56e687" />
+
+Don't forget creating the virtual asset to connect to:
+
+<img width="891" height="412" alt="image" src="https://github.com/user-attachments/assets/f10275b8-8319-46ab-bb84-8a0bd39be24a" />
+
+
+Otherwise the Access Request Policy will be created in the per-user Entitlement together with the access to the virtual JIT Assets.
+
+8. Create an Entitlement per each User. This is required as at the time of writing this readme (in SPP v8.2) the Accounts of a Custom Platfom Asset can't be configured as Linked Accounts.
 
 	<img width="1019" height="477" alt="image" src="https://github.com/user-attachments/assets/655c5fb8-aac7-4f68-ab1e-f98390d01c80" />
 
