@@ -17,11 +17,11 @@ Changing the password is:
  
 The addon will be the Platform Types for additionally created Assets in Safeguard, each separate Asset representing a Role in OneLogin:
 
-<< picture >>
+	<img width="858" height="525" alt="image" src="https://github.com/user-attachments/assets/93c87b36-e9c0-443f-be86-154cc253b896" />
 
 Each privileged OneLogin User having permission to elevate into that Role needs to have an Account object created within the Asset representing the Role.
 
-<< picture >>
+	<img width="1158" height="557" alt="image" src="https://github.com/user-attachments/assets/95451a74-bd75-4b27-a526-dda21c8aaeb8" />
 
 (Note: the Assets could also represent groups of Roles.)
 
@@ -29,11 +29,11 @@ In SPP the Account shows up on the Access Request portal only if it has the pass
 
 The Users need to have Entitlements / Access Request Policies to the base privileged OneLogin Account as well as for the individual Accounts representing the Roles. This requires creating an Entitlement per User as at the time of writing this reamde (in SPP v8.2) the Accounts of neither the OneLogin platform Asset, nor the custom platform Assets can be added as Linked Accounts.
 
-<< picture >>
+	<img width="1019" height="477" alt="image" src="https://github.com/user-attachments/assets/655c5fb8-aac7-4f68-ab1e-f98390d01c80" />
 
 When the User is requesting access to the privileged OneLogin Account, at the same time the desired Roles should also be selected. The privileged OneLogin Account will have the Roles assigned, once the subsequent access requests representing the Roles become available (after Pending Restore state).
 
-<< picture >>
+	<img width="1433" height="591" alt="image" src="https://github.com/user-attachments/assets/6032d9cc-23e5-42e4-9641-1913bf3a4125" />
 
 #### Demo video
 << video >>
@@ -111,28 +111,27 @@ With this, the User is now able to raise Access Requests in Safeguard which enab
 
 7. Create an Entitlement per each User. This is required as at the time of writing this readme (in SPP v8.2) the Accounts of a Custom Platfom Asset can't be configured as Linked Accounts.
 
-8. Create a Dynamic Account Group for all the Role-specific Accounts of the User.
+	<img width="1019" height="477" alt="image" src="https://github.com/user-attachments/assets/655c5fb8-aac7-4f68-ab1e-f98390d01c80" />
+
+9. Create a Dynamic Account Group for all the Role-specific Accounts of the User.
 
 	<img width="846" height="629" alt="image" src="https://github.com/user-attachments/assets/001eb106-ea27-464b-8551-745743e0e43c" />
 
 	<img width="682" height="626" alt="image" src="https://github.com/user-attachments/assets/753dd676-a45b-4d15-9015-1ac368d755e0" />
 
 
-9. Create an Access Request Policy into the Entitlement. In the Scope of this Access Request Policy, add the Dynamic Account Group of the User.
+10. Create an Access Request Policy into the Entitlement. In the Scope of this Access Request Policy, add the Dynamic Account Group of the User.
 
-	<img width="1019" height="477" alt="image" src="https://github.com/user-attachments/assets/655c5fb8-aac7-4f68-ab1e-f98390d01c80" />
+	
 
 	<img width="856" height="503" alt="image" src="https://github.com/user-attachments/assets/091c8efe-85e1-41d1-ae66-5cc5dfe0db90" />
 
 	<img width="871" height="507" alt="image" src="https://github.com/user-attachments/assets/e886de2e-4e4c-4c16-8dbf-80ebfd97ff99" />
 
-	<img width="1433" height="591" alt="image" src="https://github.com/user-attachments/assets/6032d9cc-23e5-42e4-9641-1913bf3a4125" />
-
-
 
 With this, the User is now able to raise Access Requests in Safeguard which enables the Account in OneLogin and assigns the requested Roles.
 
-	![Uploading image.png…]()
+	<img width="1433" height="591" alt="image" src="https://github.com/user-attachments/assets/6032d9cc-23e5-42e4-9641-1913bf3a4125" />
 
 
 
