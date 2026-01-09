@@ -44,7 +44,7 @@ It can be configured with two different approaches:
 	* In this case the default Starling Connect connector for OneLogin is not used. Asset and Account objects are created by OneLogin, as well as the Entitlements and the Access Request Policies.
 	* Every Role which you want to make available for the privileged OneLogin account is mapped to an Asset/Account object in Safeguard, automatically by OneLogin. Corresponding Entitlements and Access Request policies are also created by OneLogin.
 	* OneLogin is automatically registering the TOTP for the privileged OneLogin account, as well as vaulting it in SPP (the TOTP seed is never exposed, users are technically forced to use the vaulted credential).
-* **The base Account is created via the Discovery feature of the Starling Connect connector for OneLogin (or in any other way).**
+* **The base Account is created via the Discovery feature of the Starling Connect connector for OneLogin or in any other way, like via AD (in case the accounts are synchronized into OneLogin from AD).**
 	* In this case the Asset/Account objects representing the Role/User pairs must be created manually, or via 3rd party automation, so as the Entitlements and Access Request Policies.
 	* The TOTP seed for the base privileged OneLogin Account must be vaulted manually, or via 3rd party automation.
 
