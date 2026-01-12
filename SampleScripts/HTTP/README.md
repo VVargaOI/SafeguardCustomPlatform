@@ -38,6 +38,21 @@ When the User is requesting access to the privileged OneLogin Account, at the sa
 #### Demo video
 << video >>
 
+### About enabling/disabling the OneLogin user via a Safeguard Access Request
+JIT enable/disable or elevate/demote tasks are implemented on the OneLogin_GRC_JIT_addon Asset/Accounts.
+
+There are two typical setups:
+
+1. When the Account objects are managed by OneLogin, all of them stored under a OneLogin_GRC_JIT_addon Asset:
+	* In this scenario enable the *Suspend account when checked in* function under Password Profile > Change Password policy for the main privileged account. Do not configure JIT groups for this Accounts.
+	* Configure the JIT group elevation for the Accounts on the Assets representing the Roles. Do not enable the *Suspend account when checked in* function for these Accounts.
+	* Once the main -adm account is checked out, it gets activated. The Roles get assigned depending on which corresponding Asset is requested along with the main Account. Whilst the main Account is checked out, the User can request further Roles, or check any of them in, demoting that Role in OneLogin.
+
+2. When the main Account is managed by the out-of-box Starling Connect connector for OneLogin, and only the Assets representing a Role are configured with the OneLogin_GRC_JIT_addon platform type:
+	* In this case both the *Suspend account when checked in* function and the JIT groups should be configured on each of the Asset/Accounts representing a OneLogin Role.
+	* Despite the main Account is checked out, it is still inactive in OneLogin. It will only be activated once an Asset/Account representing a Role gets checked out too, as the OneLogin_GRC_JIT_addon is the connector implementing JIT activation and elevation.
+	* In case the Account is assigned to multiple Roles via requesting multiple Asset/Accounts representing a OneLogin Role, the User should not check in any of the Roles before finishing all activities because checking one of these requests in will not only demote the requested Role, but also deactivate the Account inside OneLogin.
+
 ### Configuration
 It can be configured with two different approaches: 
 * **Accounts are created by OneLogin through its Generic REST Connector.**
@@ -147,21 +162,6 @@ With this, the User is now able to raise Access Requests in Safeguard which enab
 
 <img width="1433" height="591" alt="image" src="https://github.com/user-attachments/assets/6032d9cc-23e5-42e4-9641-1913bf3a4125" />
 
-
-### About enabling/disabling the OneLogin user via a Safeguard Access Request
-JIT enable/disable or elevate/demote tasks are implemented on the OneLogin_GRC_JIT_addon Asset/Accounts.
-
-There are two typical setups:
-
-1. When the Account objects are managed by OneLogin, all of them stored under a OneLogin_GRC_JIT_addon Asset:
-	* In this scenario enable the *Suspend account when checked in* function under Password Profile > Change Password policy for the main privileged account. Do not configure JIT groups for this Accounts.
-	* Configure the JIT group elevation for the Accounts on the Assets representing the Roles. Do not enable the *Suspend account when checked in* function for these Accounts.
-	* Once the main -adm account is checked out, it gets activated. The Roles get assigned depending on which corresponding Asset is requested along with the main Account. Whilst the main Account is checked out, the User can request further Roles, or check any of them in, demoting that Role in OneLogin.
-
-2. When the main Account is managed by the out-of-box Starling Connect connector for OneLogin, and only the Assets representing a Role are configured with the OneLogin_GRC_JIT_addon platform type:
-	* In this case both the *Suspend account when checked in* function and the JIT groups should be configured on each of the Asset/Accounts representing a OneLogin Role.
-	* Despite the main Account is checked out, it is still inactive in OneLogin. It will only be activated once an Asset/Account representing a Role gets checked out too, as the OneLogin_GRC_JIT_addon is the connector implementing JIT activation and elevation.
-	* In case the Account is assigned to multiple Roles via requesting multiple Asset/Accounts representing a OneLogin Role, the User should not check in any of the Roles before finishing all activities because checking one of these requests in will not only demote the requested Role, but also deactivate the Account inside OneLogin.
 
 ## Okta_WithDiscoveryAndGroupMembershipRestore
 This script had been implemented before the JIT Elevation functionality was available in Safeguard. Hence the configuration is cumbersome and does not work as JIT is confgured.
