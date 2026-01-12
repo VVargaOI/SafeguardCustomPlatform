@@ -134,7 +134,7 @@ Otherwise the Access Request Policy will be created in the per-user Entitlement 
 	<img width="682" height="626" alt="image" src="https://github.com/user-attachments/assets/753dd676-a45b-4d15-9015-1ac368d755e0" />
 
 
-10. Create an Access Request Policy into the Entitlement. In the Scope of this Access Request Policy, add the Dynamic Account Group of the User.
+10. Create a password Access Request Policy into the Entitlement. In the Scope of this Access Request Policy, add the Dynamic Account Group of the User.
 
 	
 
@@ -145,8 +145,7 @@ Otherwise the Access Request Policy will be created in the per-user Entitlement 
 
 With this, the User is now able to raise Access Requests in Safeguard which enables the Account in OneLogin and assigns the requested Roles.
 
-	<img width="1433" height="591" alt="image" src="https://github.com/user-attachments/assets/6032d9cc-23e5-42e4-9641-1913bf3a4125" />
-
+<img width="1433" height="591" alt="image" src="https://github.com/user-attachments/assets/6032d9cc-23e5-42e4-9641-1913bf3a4125" />
 
 
 ### About enabling/disabling the OneLogin user via a Safeguard Access Request
