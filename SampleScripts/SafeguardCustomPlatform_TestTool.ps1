@@ -3,13 +3,13 @@
 # It currently supports: Restore|Elevate|Demote|Suspend
 
 # Base parameters
-$appliance = “<spp-address>"
-$username = “<spp-user-to-upload-the-script-and-run-the-task>"
-$provider = “<local|etc>"
+$appliance = "<spp-address>"
+$username = "<spp-user-to-upload-the-script-and-run-the-task>"
+$provider = "<local|etc>"
 
 # Script Upload parameters
-$customPlatformScriptPath = “<path-of-custom-platform-script.json>"
-$customPlatformName = “<name-of-platform-as-configured-in-spp>”
+$customPlatformScriptPath = "<path-of-custom-platform-script.json>"
+$customPlatformName = "<name-of-platform-as-configured-in-spp>"
 
 
 # Test parameters
