@@ -149,9 +149,7 @@ Otherwise the Access Request Policy will be created in the per-user Entitlement 
 
 
 10. Create a password Access Request Policy into the Entitlement. In the Scope of this Access Request Policy, add the Dynamic Account Group of the User.
-
 	
-
 	![SafeguardCustomPlatform](../../Images/http_oneloginjit_21.png)
 
 	![SafeguardCustomPlatform](../../Images/http_oneloginjit_22.png)
@@ -160,6 +158,7 @@ Otherwise the Access Request Policy will be created in the per-user Entitlement 
 With this, the User is now able to raise Access Requests in Safeguard which enables the Account in OneLogin and assigns the requested Roles.
 
 	![SafeguardCustomPlatform](../../Images/http_oneloginjit_23.png)
+	
 
 
 ## Okta_WithDiscoveryAndGroupMembershipRestore
