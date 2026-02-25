@@ -135,8 +135,7 @@ Don't forget creating the virtual asset to connect to:
 
 	![SafeguardCustomPlatform](Images/http_oneloginjit_17.png)
 
-
-	Otherwise the Access Request Policy will be created in the per-user Entitlement together with the access to the virtual JIT Assets.
+Otherwise the Access Request Policy will be created in the per-user Entitlement together with the access to the virtual JIT Assets.
 
 8. Create an Entitlement per each User. This is required as at the time of writing this readme (in SPP v8.2) the Accounts of a Custom Platfom Asset can't be configured as Linked Accounts.
 
