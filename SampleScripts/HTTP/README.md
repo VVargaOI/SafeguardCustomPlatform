@@ -37,7 +37,7 @@ When the User is requesting access to the privileged OneLogin Account, at the sa
 
 #### Demo video
 
-<a href="https://raw.githubusercontent.com/VVargaOI/SafeguardCustomPlatform/master/Videos/http_oneloginjit_1.mp4" target="_blank">Watch demo video</a>
+<a href="https://raw.githubusercontent.com/OneIdentity/SafeguardCustomPlatform/master/Videos/http_oneloginjit_1.mp4" target="_blank">Watch demo video</a>
 
 
 ### About enabling/disabling the OneLogin user via a Safeguard Access Request
