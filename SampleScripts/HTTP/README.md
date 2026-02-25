@@ -36,7 +36,7 @@ When the User is requesting access to the privileged OneLogin Account, at the sa
 ![SafeguardCustomPlatform](../../Images/http_oneloginjit_4.png)
 
 #### Demo video
-<< video >>
+![SafeguardCustomPlatform](../../Videos/http_oneloginjit_1.mp4)
 
 ### About enabling/disabling the OneLogin user via a Safeguard Access Request
 JIT enable/disable or elevate/demote tasks are implemented on the OneLogin_GRC_JIT_addon Asset/Accounts.
