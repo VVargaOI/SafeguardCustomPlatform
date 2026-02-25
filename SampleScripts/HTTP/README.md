@@ -157,7 +157,7 @@ Otherwise the Access Request Policy will be created in the per-user Entitlement 
 
 With this, the User is now able to raise Access Requests in Safeguard which enables the Account in OneLogin and assigns the requested Roles.
 
-	![SafeguardCustomPlatform](../../Images/http_oneloginjit_23.png)
+![SafeguardCustomPlatform](../../Images/http_oneloginjit_23.png)
 	
 
 
