@@ -20,17 +20,10 @@
                 }
             },
             {
-                "UseSsl": {
-                    "Type": "boolean",
-                    "Required": false,
-                    "DefaultValue": true
-                }
-            },
-            {
                 "SkipServerCertValidation": {
                     "Type": "boolean",
                     "Required": false,
-                    "DefaultValue": true
+                    "DefaultValue": false
                 }
             },
             {
@@ -48,8 +41,7 @@
                         "%Address%",
                         "%FuncUsername%",
                         "%FuncPassword%",
-                        "%{SkipServerCertValidation}%",
-                        "%{UseSsl}%"
+                        "%{SkipServerCertValidation}%"
                     ],
                     "ResultVariable": "AccessTokenResult"
                 }
@@ -76,8 +68,7 @@
 										"%FuncUsername%",
 										"%FuncPassword%",
 										"%{AccessToken}%",
-										"%{SkipServerCertValidation}%",
-										"%{UseSsl}%"
+										"%{SkipServerCertValidation}%"
 									],
 									"ResultVariable": "Disconnected"
 								}
@@ -119,17 +110,10 @@
                 }
             },
             {
-                "UseSsl": {
-                    "Type": "boolean",
-                    "Required": false,
-                    "DefaultValue": true
-                }
-            },
-            {
                 "SkipServerCertValidation": {
                     "Type": "boolean",
                     "Required": false,
-                    "DefaultValue": true
+                    "DefaultValue": false
                 }
             },
             {
@@ -173,17 +157,10 @@
                 }
             },
             {
-                "UseSsl": {
-                    "Type": "boolean",
-                    "Required": false,
-                    "DefaultValue": true
-                }
-            },
-            {
                 "SkipServerCertValidation": {
                     "Type": "boolean",
                     "Required": false,
-                    "DefaultValue": true
+                    "DefaultValue": false
                 }
             },
             {
@@ -204,8 +181,7 @@
                                     "%Address%",
                                     "%FuncUsername%",
                                     "%FuncPassword%",
-                                    "%{SkipServerCertValidation}%",
-                                    "%{UseSsl}%"
+                                    "%{SkipServerCertValidation}%"
                                 ],
                                 "ResultVariable": "AccessTokenResult"
                             }
@@ -230,8 +206,7 @@
                                     "%Address%",
                                     "%AccountUsername%",
                                     "%AccessToken%",
-                                    "%{SkipServerCertValidation}%",
-                                    "%{UseSsl}%"
+                                    "%{SkipServerCertValidation}%"
                                 ],
                                 "ResultVariable": "GetUserIdResult"
                             }
@@ -260,8 +235,7 @@
                                     "%Address%",
                                     "%GetUserIdResult%",
                                     "%AccessToken%",
-                                    "%{SkipServerCertValidation}%",
-                                    "%{UseSsl}%"
+                                    "%{SkipServerCertValidation}%"
                                 ],
                                 "ResultVariable": "ActivateUserResult"
                             }
@@ -278,8 +252,7 @@
 														"%FuncUsername%",
 														"%FuncPassword%",
 														"%{AccessToken}%",
-														"%{SkipServerCertValidation}%",
-														"%{UseSsl}%"
+														"%{SkipServerCertValidation}%"
 													],
 													"ResultVariable": "Disconnected"
 												}
@@ -334,17 +307,10 @@
                 }
             },
             {
-                "UseSsl": {
-                    "Type": "boolean",
-                    "Required": false,
-                    "DefaultValue": true
-                }
-            },
-            {
                 "SkipServerCertValidation": {
                     "Type": "boolean",
                     "Required": false,
-                    "DefaultValue": true
+                    "DefaultValue": false
                 }
             },
             {
@@ -365,8 +331,7 @@
                                     "%Address%",
                                     "%FuncUsername%",
                                     "%FuncPassword%",
-                                    "%{SkipServerCertValidation}%",
-                                    "%{UseSsl}%"
+                                    "%{SkipServerCertValidation}%"
                                 ],
                                 "ResultVariable": "AccessTokenResult"
                             }
@@ -392,8 +357,7 @@
                                     "%Address%",
                                     "%AccountUsername%",
                                     "%AccessToken%",
-                                    "%{SkipServerCertValidation}%",
-                                    "%{UseSsl}%"
+                                    "%{SkipServerCertValidation}%"
                                 ],
                                 "ResultVariable": "GetUserIdResult"
                             }
@@ -423,8 +387,7 @@
                                     "%Address%",
                                     "%GetUserIdResult%",
                                     "%AccessToken%",
-                                    "%{SkipServerCertValidation}%",
-                                    "%{UseSsl}%"
+                                    "%{SkipServerCertValidation}%"
                                 ],
                                 "ResultVariable": "DeactivateUserResult"
                             }
@@ -441,8 +404,7 @@
 														"%FuncUsername%",
 														"%FuncPassword%",
 														"%{AccessToken}%",
-														"%{SkipServerCertValidation}%",
-														"%{UseSsl}%"
+														"%{SkipServerCertValidation}%"
 													],
 													"ResultVariable": "Disconnected"
 												}
@@ -497,17 +459,10 @@
                 }
             },
             {
-                "UseSsl": {
-                    "Type": "boolean",
-                    "Required": false,
-                    "DefaultValue": true
-                }
-            },
-            {
                 "SkipServerCertValidation": {
                     "Type": "boolean",
                     "Required": false,
-                    "DefaultValue": true
+                    "DefaultValue": false
                 }
             },
             {
@@ -548,8 +503,7 @@
                                     "%Address%",
                                     "%FuncUsername%",
                                     "%FuncPassword%",
-                                    "%{SkipServerCertValidation}%",
-                                    "%{UseSsl}%"
+                                    "%{SkipServerCertValidation}%"
                                 ],
                                 "ResultVariable": "AccessTokenResult"
                             }
@@ -576,8 +530,7 @@
                                     "%AccountUsername%",
                                     "%AccessToken%",
                                     "%{PrivilegeGroupMembership}%",
-                                    "%{SkipServerCertValidation}%",
-                                    "%{UseSsl}%"
+                                    "%{SkipServerCertValidation}%"
                                 ],
                                 "ResultVariable": "AssignRolesResult"
                             }
@@ -594,8 +547,7 @@
 														"%FuncUsername%",
 														"%FuncPassword%",
 														"%{AccessToken}%",
-														"%{SkipServerCertValidation}%",
-														"%{UseSsl}%"
+														"%{SkipServerCertValidation}%"
 													],
 													"ResultVariable": "Disconnected"
 												}
@@ -650,17 +602,10 @@
                 }
             },
             {
-                "UseSsl": {
-                    "Type": "boolean",
-                    "Required": false,
-                    "DefaultValue": true
-                }
-            },
-            {
                 "SkipServerCertValidation": {
                     "Type": "boolean",
                     "Required": false,
-                    "DefaultValue": true
+                    "DefaultValue": false
                 }
             },
             {
@@ -701,8 +646,7 @@
                                     "%Address%",
                                     "%FuncUsername%",
                                     "%FuncPassword%",
-                                    "%{SkipServerCertValidation}%",
-                                    "%{UseSsl}%"
+                                    "%{SkipServerCertValidation}%"
                                 ],
                                 "ResultVariable": "AccessTokenResult"
                             }
@@ -729,8 +673,7 @@
                                     "%AccountUsername%",
                                     "%AccessToken%",
                                     "%{PrivilegeGroupMembership}%",
-                                    "%{SkipServerCertValidation}%",
-                                    "%{UseSsl}%"
+                                    "%{SkipServerCertValidation}%"
                                 ],
                                 "ResultVariable": "DeassignRolesResult"
                             }
@@ -747,8 +690,7 @@
 														"%FuncUsername%",
 														"%FuncPassword%",
 														"%{AccessToken}%",
-														"%{SkipServerCertValidation}%",
-														"%{UseSsl}%"
+														"%{SkipServerCertValidation}%"
 													],
 													"ResultVariable": "Disconnected"
 												}
@@ -814,14 +756,7 @@
                     "SkipServerCertValidation": {
                         "Type": "boolean",
                         "Required": false,
-                        "DefaultValue": true
-                    }
-                },
-                {
-                    "UseSsl": {
-                        "Type": "boolean",
-                        "Required": false,
-                        "DefaultValue": true
+                        "DefaultValue": false
                     }
                 }
             ],
@@ -836,8 +771,7 @@
 											"%Address%",
 											"%AccountUsername%",
 											"%AccessToken%",
-											"%{SkipServerCertValidation}%",
-											"%{UseSsl}%"
+											"%{SkipServerCertValidation}%"
 										],
 										"ResultVariable": "UserId"
 									}
@@ -877,8 +811,7 @@
 															"%Address%",
 															"%role%",
 															"%AccessToken%",
-															"%{SkipServerCertValidation}%",
-															"%{UseSsl}%"
+															"%{SkipServerCertValidation}%"
 														],
 														"ResultVariable": "RoleId"
 													}
@@ -912,7 +845,6 @@
 																		"%UserId%",
 																		"%AccessToken%",
 																		"%{SkipServerCertValidation}%",
-																		"%{UseSsl}%",
 																		"%{AccountUsername}%"
 																	],
 																	"ResultVariable": "DeleteUserFromRoleResult"
@@ -1042,14 +974,7 @@
                     "SkipServerCertValidation": {
                         "Type": "boolean",
                         "Required": false,
-                        "DefaultValue": true
-                    }
-                },
-                {
-                    "UseSsl": {
-                        "Type": "boolean",
-                        "Required": false,
-                        "DefaultValue": true
+                        "DefaultValue": false
                     }
                 }
             ],
@@ -1065,8 +990,7 @@
 										"%Address%",
 										"%AccountUsername%",
 										"%AccessToken%",
-										"%{SkipServerCertValidation}%",
-										"%{UseSsl}%"
+										"%{SkipServerCertValidation}%"
 									],
 									"ResultVariable": "UserId"
 								}
@@ -1095,8 +1019,7 @@
 										"%Address%",
 										"%AccountUsername%",
 										"%AccessToken%",
-										"%{SkipServerCertValidation}%",
-										"%{UseSsl}%"
+										"%{SkipServerCertValidation}%"
 									],
 									"ResultVariable": "IsUserActiveResult"
 								}
@@ -1136,8 +1059,7 @@
 														"%Address%",
 														"%role%",
 														"%AccessToken%",
-														"%{SkipServerCertValidation}%",
-														"%{UseSsl}%"
+														"%{SkipServerCertValidation}%"
 													],
 													"ResultVariable": "RoleId"
 												}
@@ -1170,7 +1092,6 @@
 																		"%UserId%",
 																		"%AccessToken%",
 																		"%{SkipServerCertValidation}%",
-																		"%{UseSsl}%",
 																		"%{AccountUsername}%"
 																	],
 																	"ResultVariable": "AddUserToRoleResult"
@@ -1295,14 +1216,7 @@
                     "SkipServerCertValidation": {
                         "Type": "boolean",
                         "Required": false,
-                        "DefaultValue": true
-                    }
-                },
-                {
-                    "UseSsl": {
-                        "Type": "boolean",
-                        "Required": false,
-                        "DefaultValue": true
+                        "DefaultValue": false
                     }
                 }
             ],
@@ -1313,27 +1227,9 @@
                         "Value": "{\"status\": 1}"
                     }
                 },
-                {
-                    "Condition": {
-                        "If": "UseSsl",
-                        "Then": {
-                            "Do": [
-                                {
-                                    "BaseAddress": {
-                                        "Address": "https://%Address%"
-                                    }
-                                }
-                            ]
-                        },
-                        "Else": {
-                            "Do": [
-                                {
-                                    "BaseAddress": {
-                                        "Address": "http://%Address%"
-                                    }
-                                }
-                            ]
-                        }
+				{
+                    "BaseAddress": {
+                        "Address": "https://%Address%"
                     }
                 },
                 {
@@ -1447,14 +1343,7 @@
                     "SkipServerCertValidation": {
                         "Type": "boolean",
                         "Required": false,
-                        "DefaultValue": true
-                    }
-                },
-                {
-                    "UseSsl": {
-                        "Type": "boolean",
-                        "Required": false,
-                        "DefaultValue": true
+                        "DefaultValue": false
                     }
                 }
             ],
@@ -1466,26 +1355,8 @@
                     }
                 },
                 {
-                    "Condition": {
-                        "If": "UseSsl",
-                        "Then": {
-                            "Do": [
-                                {
-                                    "BaseAddress": {
-                                        "Address": "https://%Address%"
-                                    }
-                                }
-                            ]
-                        },
-                        "Else": {
-                            "Do": [
-                                {
-                                    "BaseAddress": {
-                                        "Address": "http://%Address%"
-                                    }
-                                }
-                            ]
-                        }
+                    "BaseAddress": {
+                        "Address": "https://%Address%"
                     }
                 },
                 {
@@ -1604,14 +1475,7 @@
                     "SkipServerCertValidation": {
                         "Type": "boolean",
                         "Required": false,
-                        "DefaultValue": true
-                    }
-                },
-                {
-                    "UseSsl": {
-                        "Type": "boolean",
-                        "Required": false,
-                        "DefaultValue": true
+                        "DefaultValue": false
                     }
                 },
                 {
@@ -1634,26 +1498,8 @@
                     }
                 },
                 {
-                    "Condition": {
-                        "If": "UseSsl",
-                        "Then": {
-                            "Do": [
-                                {
-                                    "BaseAddress": {
-                                        "Address": "https://%Address%"
-                                    }
-                                }
-                            ]
-                        },
-                        "Else": {
-                            "Do": [
-                                {
-                                    "BaseAddress": {
-                                        "Address": "http://%Address%"
-                                    }
-                                }
-                            ]
-                        }
+                    "BaseAddress": {
+                        "Address": "https://%Address%"
                     }
                 },
                 {
@@ -1704,7 +1550,6 @@
 															"%Username%",
 															"%AccessToken%",
 															"%{SkipServerCertValidation}%",
-															"%{UseSsl}%",
 															"Deassign"
 														],
 														"ResultVariable": "IsUserInRoleResult"
@@ -1788,14 +1633,7 @@
                     "SkipServerCertValidation": {
                         "Type": "boolean",
                         "Required": false,
-                        "DefaultValue": true
-                    }
-                },
-                {
-                    "UseSsl": {
-                        "Type": "boolean",
-                        "Required": false,
-                        "DefaultValue": true
+                        "DefaultValue": false
                     }
                 },
                 {
@@ -1818,26 +1656,8 @@
                     }
                 },
                 {
-                    "Condition": {
-                        "If": "UseSsl",
-                        "Then": {
-                            "Do": [
-                                {
-                                    "BaseAddress": {
-                                        "Address": "https://%Address%"
-                                    }
-                                }
-                            ]
-                        },
-                        "Else": {
-                            "Do": [
-                                {
-                                    "BaseAddress": {
-                                        "Address": "http://%Address%"
-                                    }
-                                }
-                            ]
-                        }
+                    "BaseAddress": {
+                        "Address": "https://%Address%"
                     }
                 },
                 {
@@ -1894,7 +1714,6 @@
 															"%Username%",
 															"%AccessToken%",
 															"%{SkipServerCertValidation}%",
-															"%{UseSsl}%",
 															"Assign"
 														],
 														"ResultVariable": "IsUserInRoleResult"
@@ -1978,14 +1797,7 @@
                     "SkipServerCertValidation": {
                         "Type": "boolean",
                         "Required": false,
-                        "DefaultValue": true
-                    }
-                },
-                {
-                    "UseSsl": {
-                        "Type": "boolean",
-                        "Required": false,
-                        "DefaultValue": true
+                        "DefaultValue": false
                     }
                 },
                 {
@@ -2002,26 +1814,8 @@
                     }
                 },
                 {
-                    "Condition": {
-                        "If": "UseSsl",
-                        "Then": {
-                            "Do": [
-                                {
-                                    "BaseAddress": {
-                                        "Address": "https://%Address%"
-                                    }
-                                }
-                            ]
-                        },
-                        "Else": {
-                            "Do": [
-                                {
-                                    "BaseAddress": {
-                                        "Address": "http://%Address%"
-                                    }
-                                }
-                            ]
-                        }
+                    "BaseAddress": {
+                        "Address": "https://%Address%"
                     }
                 },
                 {
@@ -2178,39 +1972,14 @@
                     "SkipServerCertValidation": {
                         "Type": "boolean",
                         "Required": false,
-                        "DefaultValue": true
-                    }
-                },
-                {
-                    "UseSsl": {
-                        "Type": "boolean",
-                        "Required": false,
-                        "DefaultValue": true
+                        "DefaultValue": false
                     }
                 }
             ],
             "Do": [
                 {
-                    "Condition": {
-                        "If": "UseSsl",
-                        "Then": {
-                            "Do": [
-                                {
-                                    "BaseAddress": {
-                                        "Address": "https://%Address%"
-                                    }
-                                }
-                            ]
-                        },
-                        "Else": {
-                            "Do": [
-                                {
-                                    "BaseAddress": {
-                                        "Address": "http://%Address%"
-                                    }
-                                }
-                            ]
-                        }
+                    "BaseAddress": {
+                        "Address": "https://%Address%"
                     }
                 },
                 {
@@ -2325,39 +2094,14 @@
                     "SkipServerCertValidation": {
                         "Type": "boolean",
                         "Required": false,
-                        "DefaultValue": true
-                    }
-                },
-                {
-                    "UseSsl": {
-                        "Type": "boolean",
-                        "Required": false,
-                        "DefaultValue": true
+                        "DefaultValue": false
                     }
                 }
             ],
             "Do": [
                 {
-                    "Condition": {
-                        "If": "UseSsl",
-                        "Then": {
-                            "Do": [
-                                {
-                                    "BaseAddress": {
-                                        "Address": "https://%Address%"
-                                    }
-                                }
-                            ]
-                        },
-                        "Else": {
-                            "Do": [
-                                {
-                                    "BaseAddress": {
-                                        "Address": "http://%Address%"
-                                    }
-                                }
-                            ]
-                        }
+                    "BaseAddress": {
+                        "Address": "https://%Address%"
                     }
                 },
                 {
@@ -2479,39 +2223,14 @@
                     "SkipServerCertValidation": {
                         "Type": "boolean",
                         "Required": false,
-                        "DefaultValue": true
-                    }
-                },
-                {
-                    "UseSsl": {
-                        "Type": "boolean",
-                        "Required": false,
-                        "DefaultValue": true
+                        "DefaultValue": false
                     }
                 }
             ],
             "Do": [
                 {
-                    "Condition": {
-                        "If": "UseSsl",
-                        "Then": {
-                            "Do": [
-                                {
-                                    "BaseAddress": {
-                                        "Address": "https://%Address%"
-                                    }
-                                }
-                            ]
-                        },
-                        "Else": {
-                            "Do": [
-                                {
-                                    "BaseAddress": {
-                                        "Address": "http://%Address%"
-                                    }
-                                }
-                            ]
-                        }
+                    "BaseAddress": {
+                        "Address": "https://%Address%"
                     }
                 },
                 {
@@ -2634,14 +2353,7 @@
                     "SkipServerCertValidation": {
                         "Type": "boolean",
                         "Required": false,
-                        "DefaultValue": true
-                    }
-                },
-                {
-                    "UseSsl": {
-                        "Type": "boolean",
-                        "Required": false,
-                        "DefaultValue": true
+                        "DefaultValue": false
                     }
                 }
                 
@@ -2654,26 +2366,8 @@
                     }
                 },
                 {
-                    "Condition": {
-                        "If": "UseSsl",
-                        "Then": {
-                            "Do": [
-                                {
-                                    "BaseAddress": {
-                                        "Address": "https://%Address%"
-                                    }
-                                }
-                            ]
-                        },
-                        "Else": {
-                            "Do": [
-                                {
-                                    "BaseAddress": {
-                                        "Address": "http://%Address%"
-                                    }
-                                }
-                            ]
-                        }
+                    "BaseAddress": {
+                        "Address": "https://%Address%"
                     }
                 },
                 {
@@ -2817,16 +2511,9 @@
                     "SkipServerCertValidation": {
                         "Type": "boolean",
                         "Required": false,
-                        "DefaultValue": true
+                        "DefaultValue": false
                     }
-                },
-                {
-                    "UseSsl": {
-                        "Type": "boolean",
-                        "Required": false,
-                        "DefaultValue": true
-                    }
-                },
+                }
             ],
             "Do": [
                 {
@@ -2836,26 +2523,8 @@
                     }
                 },
                 {
-                    "Condition": {
-                        "If": "UseSsl",
-                        "Then": {
-                            "Do": [
-                                {
-                                    "BaseAddress": {
-                                        "Address": "https://%Address%"
-                                    }
-                                }
-                            ]
-                        },
-                        "Else": {
-                            "Do": [
-                                {
-                                    "BaseAddress": {
-                                        "Address": "http://%Address%"
-                                    }
-                                }
-                            ]
-                        }
+                    "BaseAddress": {
+                        "Address": "https://%Address%"
                     }
                 },
                 {
